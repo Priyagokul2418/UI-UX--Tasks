@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h2>Hospital</h2>
+        <ul>
+          <li class="active">Dashboard</li>
+          <li>Appointment</li>
+          <li>Patient</li>
+          <li>Bed Management</li>
+          <li>Payment</li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+          <div class="user-info">
+            <span class="username">Gokulpriya</span>
+            <span class="status">Available for work</span>
+          </div>
+        </header>
+
+        <!-- Top Summary Cards -->
+        <section class="stats">
+          <div class="card">
+            <i class="fas fa-user-injured icon"></i>Patients<br /><strong
+              >2,120</strong
+            >
+          </div>
+          <div class="card">
+            <i class="fas fa-calendar-check icon"></i>Appointments<br /><strong
+              >273</strong
+            >
+          </div>
+          <div class="card">
+            <i class="fas fa-bed icon"></i>Available Beds<br /><strong
+              >123</strong
+            >
+          </div>
+          <div class="card">
+            <i class="fas fa-wallet icon"></i>General Income<br /><strong
+              >$27,123</strong
+            >
+          </div>
+        </section>
+
+        <!-- Data Section -->
+        <section class="data-section">
+          <div class="chart-card">
+            <h3>Patient Summary</h3>
+            <canvas id ="patientSummary"  style="max-height: 250px;"></canvas>
+          </div>
+
+          <div class="chart-card">
+            <h3>Medicine Sales</h3>
+            <canvas id="medicineSalesChart"></canvas>
+          </div>
+
+          <div class="chart-card">
+            <h3>Patient by Specialization</h3>
+            <canvas id="SpecializationChart" style="max-height: 300px"></canvas>
+              <div class="custom-legend">
+    <div><span class="legend-dot" style="background:#f06292"></span>Cardiology</div>
+    <div><span class="legend-dot" style="background:#ffd54f"></span>Orthopedics</div>
+    <div><span class="legend-dot" style="background:#ef5350"></span>General</div>
+  </div>
+          </div>
+        </section>
+
+   <section class="history-section">
+          <div class="table-card">
+            <h3>Upcoming Appointment</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Patient Name</th>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>mathu</td>
+                  <td>001</td>
+                  <td>2025-07-18</td>
+                  <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>viji</td>
+                  <td>002</td>
+                  <td>2025-07-19</td>
+                  <td><span class="status confirmed">Confirmed</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Ravi</td>
+                  <td>003</td>
+                  <td>2025-07-20</td>
+                  <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Meena Raj</td>
+                  <td>004</td>
+                  <td>2025-07-21</td>
+                  <td><span class="status confirmed">Confirmed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Patient History</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Diagnosis</th>
+                  <th>Admit Date</th>
+                  <th>Discharge Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>P001</td>
+                  <td>Kumar</td>
+                  <td>34</td>
+                  <td>Male</td>
+                  <td>Dengue</td>
+                  <td>2025-07-10</td>
+                  <td>2025-07-14</td>
+                </tr>
+                <tr>
+                  <td>P002</td>
+                  <td>Raj</td>
+                  <td>28</td>
+                  <td>Female</td>
+                  <td>Fever</td>
+                  <td>2025-07-08</td>
+                  <td>2025-07-12</td>
+                </tr>
+                <tr>
+                  <td>P003</td>
+                  <td>Karan Babu</td>
+                  <td>5</td>
+                  <td>Male (Child)</td>
+                  <td>Cold</td>
+                  <td>2025-07-05</td>
+                  <td>2025-07-07</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
