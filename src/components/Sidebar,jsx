@@ -1,0 +1,91 @@
+// src/components/Sidebar.jsx
+import { Link, useLocation } from 'react-router-dom';
+import { 
+  FiHome, 
+  FiCalendar, 
+  FiUser, 
+  FiUsers,
+  FiSettings,
+  FiClipboard
+} from 'react-icons/fi';
+
+export default function Sidebar({ currentUser }) {
+  const location = useLocation();
+
+  // Common links for all roles
+  const commonLinks = [
+    { 
+      path: '/', 
+      icon: <FiHome />, 
+      label: 'Dashboard',
+      roles: ['patient', 'doctor', 'receptionist', 'admin']
+    }
+  ];
+
+  // Role-specific links
+  const roleLinks = {
+    patient: [
+      { path: '/appointments', icon: <FiCalendar />, label: 'My Appointments' }
+    ],
+    doctor: [
+      { path: '/schedule', icon: <FiCalendar />, label: 'My Schedule' },
+      { path: '/patients', icon: <FiUser />, label: 'Patients' }
+    ],
+    receptionist: [
+      { path: '/appointments', icon: <FiClipboard />, label: 'Appointments' },
+      { path: '/patients', icon: <FiUser />, label: 'Patients' },
+      { path: '/doctors', icon: <FiUsers />, label: 'Doctors' }
+    ],
+    admin: [
+      { path: '/doctors', icon: <FiUsers />, label: 'Doctors' },
+      { path: '/staff', icon: <FiUsers />, label: 'Staff' },
+      { path: '/settings', icon: <FiSettings />, label: 'Settings' }
+    ]
+  };
+
+  // Combine links based on current role
+  const links = [
+    ...commonLinks.filter(link => link.roles.includes(currentUser.role)),
+    ...(roleLinks[currentUser.role] || [])
+  ];
+
+  return (
+    <div className="w-64 bg-blue-800 text-white h-screen fixed left-0 top-0 p-4">
+      <div className="mb-8">
+        <h1 className="text-xl font-bold">Clinic Portal</h1>
+        <p className="text-sm text-blue-200 mt-1 capitalize">
+          {currentUser.role} View
+        </p>
+      </div>
+
+      <nav className="space-y-2">
+        {links.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            className={`flex items-center p-3 rounded-lg transition-colors ${
+              location.pathname === link.path
+                ? 'bg-blue-700'
+                : 'hover:bg-blue-700'
+            }`}
+          >
+            <span className="text-lg mr-3">{link.icon}</span>
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+
+      <div className="absolute bottom-4 left-4 right-4 p-3 bg-blue-900 rounded-lg">
+        <div className="flex items-center">
+          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+            <FiUser className="text-blue-800" />
+          </div>
+          <div className="ml-3">
+            <p className="text-sm font-medium">{currentUser.name}</p>
+            <p className="text-xs text-blue-200 capitalize">{currentUser.role}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
